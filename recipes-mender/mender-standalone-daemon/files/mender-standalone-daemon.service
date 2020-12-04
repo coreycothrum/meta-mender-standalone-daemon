@@ -1,0 +1,13 @@
+[Unit]
+Description=Mender Standalone Update Daemon
+
+[Service]
+Type=simple
+
+LogsDirectory=mender-standalone-daemon
+RuntimeDirectory=mender-standalone-daemon
+
+ExecStart=@@sbindir@@/mender-standalone-daemon.sh
+
+[Install]
+WantedBy=multi-user.target

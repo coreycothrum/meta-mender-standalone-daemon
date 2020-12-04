@@ -1,0 +1,13 @@
+header:
+  version : 1
+  includes:
+    - meta.yml
+
+local_conf_header:
+  00_meta-mender-standalone-daemon: |
+    require conf/include/mender-standalone-daemon.inc
+
+  01_meta-mender-standalone-daemon: |
+    # overwrite this section in a custom layer
+    #
+    # MENDER/STANDALONE_DAEMON_ARTIFACT_PASSWD = "n3w_p@ssw0rd"

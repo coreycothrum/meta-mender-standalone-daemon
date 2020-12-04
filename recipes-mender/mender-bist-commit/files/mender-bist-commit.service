@@ -1,0 +1,11 @@
+[Unit]
+Description=BIST before mender commit
+
+[Service]
+Type=simple
+ExecStart=@@sbindir@@/mender-bist-commit.sh
+
+TimeoutSec=infinity
+
+[Install]
+WantedBy=multi-user.target
