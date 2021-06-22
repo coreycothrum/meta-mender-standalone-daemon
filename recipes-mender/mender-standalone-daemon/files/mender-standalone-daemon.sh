@@ -48,7 +48,7 @@ fi
 FILENAME=$(find ${WORK_DIR}/uploads/ -iname *.mender)
 if [ -f "$FILENAME" ]; then
   log     "found $FILENAME, executing mender install $FILENAME" && sleep 5
-  mender install $FILENAME >>$LOG_FILE || fatal "update failed"
+  mender install $FILENAME >>$LOG_FILE 2>&1 || fatal "update failed"
 fi
 
 exit
