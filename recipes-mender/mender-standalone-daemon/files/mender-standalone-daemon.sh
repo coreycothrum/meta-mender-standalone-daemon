@@ -4,6 +4,7 @@ set -e
 UPLOAD_DIR=@@MENDER/STANDALONE_DAEMON_DATA_DIR@@
 WORK_DIR="${RUNTIME_DIRECTORY}"
 LOG_FILE="${LOGS_DIRECTORY}/last_log"
+LOG_STAT="${LOGS_DIRECTORY}/progress"
 
 function log {
   echo $@
@@ -18,6 +19,7 @@ function fatal {
 
 function init {
   echo -n "" > $LOG_FILE
+  echo -n "" > $LOG_STAT
 
   #move upload/session directory into RUNTIME
   FILES=$( ls -dt ${UPLOAD_DIR}/*/ | head -1 )
@@ -47,8 +49,8 @@ fi
 
 FILENAME=$(find ${WORK_DIR}/uploads/ -iname *.mender)
 if [ -f "$FILENAME" ]; then
-  log     "found $FILENAME, executing mender install $FILENAME" && sleep 5
-  mender install $FILENAME >>$LOG_FILE 2>&1 || fatal "update failed"
+  log "found $FILENAME, executing mender install $FILENAME" && sleep 5
+  unbuffer mender install $FILENAME 2>&1 | tee $LOG_FILE $LOG_STAT >/dev/null || fatal "update failed"
 fi
 
 exit

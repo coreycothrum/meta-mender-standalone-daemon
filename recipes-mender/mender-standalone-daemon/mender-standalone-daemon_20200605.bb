@@ -23,6 +23,7 @@ FILES_${PN}      = "                                                            
                    "
 RDEPENDS_${PN}   = "               \
                      coreutils     \
+                     expect        \
                      mender-client \
                      openssl       \
                    "
