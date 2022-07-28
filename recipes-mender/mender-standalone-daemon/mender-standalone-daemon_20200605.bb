@@ -9,19 +9,19 @@ inherit systemd
 inherit bitbake-variable-substitution
 
 SYSTEMD_AUTO_ENABLE    = "enable"
-SYSTEMD_SERVICE_${PN} += "mender-standalone-daemon.path"
+SYSTEMD_SERVICE:${PN} += "mender-standalone-daemon.path"
 
 SRC_URI          = "                                         \
                      file://mender-standalone-daemon.sh      \
                      file://mender-standalone-daemon.path    \
                      file://mender-standalone-daemon.service \
                    "
-FILES_${PN}      = "                                                            \
+FILES:${PN}      = "                                                            \
                      ${sbindir}/mender-standalone-daemon.sh                     \
                      ${systemd_unitdir}/system/mender-standalone-daemon.path    \
                      ${systemd_unitdir}/system/mender-standalone-daemon.service \
                    "
-RDEPENDS_${PN}   = "               \
+RDEPENDS:${PN}   = "               \
                      coreutils     \
                      expect        \
                      mender-client \

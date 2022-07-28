@@ -7,22 +7,22 @@ inherit systemd
 inherit bitbake-variable-substitution
 
 SYSTEMD_AUTO_ENABLE    = "enable"
-SYSTEMD_SERVICE_${PN} += "mender-bist-commit.service"
+SYSTEMD_SERVICE:${PN} += "mender-bist-commit.service"
 
 SRC_URI               += "                                   \
                            file://mender-bist-commit.service \
                            file://mender-bist-commit.sh      \
                          "
-FILES_${PN}            = "                                                      \
+FILES:${PN}            = "                                                      \
                            ${systemd_unitdir}/system/mender-bist-commit.service \
                            ${sbindir}/mender-bist-commit.sh                     \
                          "
-RDEPENDS_${PN}         = "               \
+RDEPENDS:${PN}         = "               \
                            coreutils     \
                            mender-client \
                          "
 
-do_install_append() {
+do_install:append() {
     install -d                                            ${D}${systemd_unitdir}/system
     install -m 0644 ${WORKDIR}/mender-bist-commit.service ${D}${systemd_unitdir}/system
 

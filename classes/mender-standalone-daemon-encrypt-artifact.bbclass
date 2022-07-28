@@ -1,4 +1,4 @@
-IMAGE_CMD_mender_append () {
+IMAGE_CMD:mender:append () {
   local artifact="${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.mender"
   local enc_file="${artifact}.${MENDER/STANDALONE_DAEMON_ARTIFACT_ENCRYPT_EXT}"
 

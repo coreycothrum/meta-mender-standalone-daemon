@@ -3,7 +3,7 @@ SUMMARY     = "meta-mender-standalone-daemon packages"
 
 inherit packagegroup
 
-RDEPENDS_${PN} += "                          \
+RDEPENDS:${PN} += "                          \
                     mender-bist-commit       \
                     mender-standalone-daemon \
                   "
