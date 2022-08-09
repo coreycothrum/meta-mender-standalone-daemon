@@ -1,5 +1,7 @@
 [Unit]
 Description=BIST before mender commit
+After=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
+Requires=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
 
 [Service]
 Type=simple

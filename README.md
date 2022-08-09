@@ -4,7 +4,8 @@ Provide *semi*-automated install with standalone deployments of [Mender](https:/
 ## Overview
 * An encrypted version of the mender artifact is generated with password: ``MENDER/STANDALONE_DAEMON_ARTIFACT_PASSWD``
 * ``mender-standalone-daemon.service`` automatically installs any mender artifact (stock or encrypted) found in ``MENDER/STANDALONE_DAEMON_DATA_DIR``
-* ``mender-bist-commit.service`` commits the update if no systemd services have failed after ``MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS`` (i.e. a successful boot)
+* ``mender-bist-commit.service`` commits the update if no systemd services have failed after ``MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS`` (i.e. a successful boot).
+  Additional dependencies can be added with ``MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER``.
 
 ## Dependencies
 This layer depends on:
