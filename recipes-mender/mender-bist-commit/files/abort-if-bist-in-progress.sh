@@ -12,8 +12,10 @@ function fatal {
 }
 
 ################################################################################
-if systemctl --quiet is-active mender-bist-commit.service > /dev/null 2>&1; then
+if   systemctl --quiet is-active mender-bist-commit.service > /dev/null 2>&1; then
   fatal "mender-bist-commit.service is still active. Wait longer before you can update again."
+elif systemctl --quiet is-failed mender-bist-commit.service > /dev/null 2>&1; then
+  fatal "mender-bist-commit.service is in a failed state. A reboot is required to rollback this failed update."
 fi
 
 exit
