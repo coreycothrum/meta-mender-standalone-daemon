@@ -6,4 +6,5 @@ inherit packagegroup
 RDEPENDS:${PN} += "                          \
                     mender-bist-commit       \
                     mender-standalone-daemon \
+                    ${@mender_feature_is_enabled("mender-grub","mender-grubenv-socket","",d)} \
                   "

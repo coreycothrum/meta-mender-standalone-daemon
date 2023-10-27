@@ -1,0 +1,8 @@
+# socat - UNIX-CONNECT:/run/mender_grubenv.socket
+[Unit]
+Description=query & display mender grubenv
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/grub-mender-grubenv-print
+StandardOutput=socket

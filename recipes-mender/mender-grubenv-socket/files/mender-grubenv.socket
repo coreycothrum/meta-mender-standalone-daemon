@@ -1,0 +1,13 @@
+# socat - UNIX-CONNECT:/run/mender_grubenv.socket
+[Unit]
+Description=query & display mender grubenv
+
+[Socket]
+ListenStream=%t/mender_grubenv.socket
+Accept=yes
+
+TriggerLimitIntervalSec=1s
+TriggerLimitBurst=50
+
+[Install]
+WantedBy=sockets.target
