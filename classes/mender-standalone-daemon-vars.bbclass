@@ -1,4 +1,4 @@
-MENDER/STANDALONE_DAEMON_DATA_DIR                 ?= "/run/.mender-standalone-daemon/uploads"
+MENDER/STANDALONE_DAEMON_DATA_DIR                ??= "/run/.mender-standalone-daemon/uploads"
 MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS         ??= "300"
 MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER      ??= ""
 
