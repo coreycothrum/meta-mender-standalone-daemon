@@ -1,7 +1,7 @@
 [Path]
 DirectoryNotEmpty=@@MENDER/STANDALONE_DAEMON_DATA_DIR@@
 MakeDirectory=True
-DirectoryMode=0777
+DirectoryMode=1777
 
 [Install]
 WantedBy=multi-user.target
