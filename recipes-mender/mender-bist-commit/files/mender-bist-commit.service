@@ -9,6 +9,8 @@ ExecStartPre=@@base_bindir@@/sleep @@MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS@@
 ExecStart=@@sbindir@@/mender-bist-commit.sh
 
 TimeoutSec=infinity
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

@@ -11,14 +11,9 @@ if [ "$UPGRADE_AVAIL" -ne "0" ]; then
     mender commit
     rc=$?
   else
-    echo "systemctl reports failures; not commiting current mender artifact; reboot to rollback"
+    echo "systemctl reports failure(s); not committing current mender artifact; reboot to rollback"
     rc=1
   fi
-
-  # redundant now? # nothing to commit, not an error
-  # redundant now? if [ $rc -eq 2 ]; then
-  # redundant now?   rc=0
-  # redundant now? fi
 else
   echo "no mender upgrade_available; continuing to boot"
 fi
