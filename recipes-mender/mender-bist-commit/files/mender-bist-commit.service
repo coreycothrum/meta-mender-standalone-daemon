@@ -1,12 +1,14 @@
 [Unit]
 Description=BIST before mender commit
 After=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
-Requires=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
+Wants=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
 
 [Service]
 Type=oneshot
 ExecStartPre=@@base_bindir@@/sleep @@MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS@@
 ExecStart=@@sbindir@@/mender-bist-commit.sh
+
+RemainAfterExit=yes
 SuccessExitStatus=2
 
 TimeoutSec=infinity
