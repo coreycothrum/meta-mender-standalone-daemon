@@ -7,6 +7,7 @@ Requires=multi-user.target @@MENDER/STANDALONE_DAEMON_BIST_SYSTEMD_AFTER@@
 Type=oneshot
 ExecStartPre=@@base_bindir@@/sleep @@MENDER/STANDALONE_DAEMON_BIST_DELAY_SECS@@
 ExecStart=@@sbindir@@/mender-bist-commit.sh
+SuccessExitStatus=2
 
 TimeoutSec=infinity
 Restart=on-failure
