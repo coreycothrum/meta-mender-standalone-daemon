@@ -24,7 +24,7 @@ FILES:${PN}      = "                                                            
 RDEPENDS:${PN}   = "               \
                      coreutils     \
                      expect        \
-                     mender-client \
+                     mender-update \
                      openssl       \
                    "
 

@@ -9,7 +9,7 @@ SYSTEMD_SERVICE:${PN} += "mender-grubenv.socket"
 
 RDEPENDS:${PN}        += "                     \
                            grub-mender-grubenv \
-                           mender-client       \
+                           mender-update       \
                          "
 SRC_URI                = "                                \
                            file://mender-grubenv.socket   \

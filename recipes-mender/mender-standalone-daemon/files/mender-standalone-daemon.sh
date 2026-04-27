@@ -45,7 +45,7 @@ FILENAME=$(find ${UPLOAD_DIR} -iname *.mender | head -1)
 if [ -f "$FILENAME" ]; then
   log "found $FILENAME, executing mender install $FILENAME" && sleep 2
   set -o pipefail
-  unbuffer mender install $FILENAME 2>&1 | tee $LOG_FILE $LOG_STAT || fatal "update failed"
+  unbuffer mender-update install $FILENAME 2>&1 | tee $LOG_FILE $LOG_STAT || fatal "update failed"
 fi
 
 exit

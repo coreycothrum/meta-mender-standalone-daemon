@@ -8,7 +8,7 @@ if [ "$UPGRADE_AVAIL" -ne "0" ]; then
 
   if ! systemctl --quiet is-failed "*"; then
     echo "systemctl reports all good; committing current mender artifact"
-    mender commit
+    mender-update commit
     rc=$?
   else
     echo "systemctl reports failure(s); not committing current mender artifact; reboot to rollback"

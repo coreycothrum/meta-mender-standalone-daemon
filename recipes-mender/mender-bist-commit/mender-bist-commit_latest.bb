@@ -21,7 +21,7 @@ FILES:${PN}           += "                                                      
                          "
 RDEPENDS:${PN}        += "               \
                            coreutils     \
-                           mender-client \
+                           mender-update \
                            util-linux    \
                          "
 
