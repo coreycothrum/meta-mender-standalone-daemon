@@ -10,33 +10,34 @@ inherit mender-state-scripts
 SYSTEMD_AUTO_ENABLE    = "enable"
 SYSTEMD_SERVICE:${PN} += "mender-bist-commit.service"
 
-SRC_URI               += "                                     \
-                           file://abort-if-bist-in-progress.sh \
-                           file://mender-bist-commit.service   \
-                           file://mender-bist-commit.sh        \
-                         "
-FILES:${PN}           += "                                                      \
-                           ${systemd_unitdir}/system/mender-bist-commit.service \
-                           ${sbindir}/mender-bist-commit.sh                     \
-                         "
-RDEPENDS:${PN}        += "               \
-                           coreutils     \
-                           mender-update \
-                           util-linux    \
-                         "
+SRC_URI += " \
+  file://abort-if-bist-in-progress.sh \
+  file://mender-bist-commit.service \
+  file://mender-bist-commit.sh \
+"
+FILES:${PN} += " \
+  ${systemd_unitdir}/system/mender-bist-commit.service \
+  ${sbindir}/mender-bist-commit.sh \
+"
+RDEPENDS:${PN} += " \
+  coreutils     \
+  mender-update \
+  util-linux    \
+"
+S = "${UNPACKDIR}"
 
 do_compile[nostamp] = "1"
 do_compile() {
-    cp ${WORKDIR}/abort-if-bist-in-progress.sh            ${MENDER_STATE_SCRIPTS_DIR}/Download_Enter_00_mender-standalone-abort-if-bist-in-progress.sh
-    ${@bitbake_variables_search_and_sub(                 "${MENDER_STATE_SCRIPTS_DIR}/", r"${BITBAKE_VAR_SUB_DELIM}", d)}
+    cp ${S}/abort-if-bist-in-progress.sh ${MENDER_STATE_SCRIPTS_DIR}/Download_Enter_00_mender-standalone-abort-if-bist-in-progress.sh
+    ${@bitbake_variables_search_and_sub("${MENDER_STATE_SCRIPTS_DIR}/", r"${BITBAKE_VAR_SUB_DELIM}", d)}
 }
 
 do_install:append() {
-    install -d                                            ${D}${systemd_unitdir}/system
-    install -m 0644 ${WORKDIR}/mender-bist-commit.service ${D}${systemd_unitdir}/system
+    install -d                                      ${D}${systemd_unitdir}/system
+    install -m 0644 ${S}/mender-bist-commit.service ${D}${systemd_unitdir}/system
     ${@bitbake_variables_search_and_sub(                 "${D}${systemd_unitdir}/system/", r"${BITBAKE_VAR_SUB_DELIM}", d)}
 
-    install -d                                            ${D}${sbindir}
-    install -m 0755 ${WORKDIR}/mender-bist-commit.sh      ${D}${sbindir}
-    ${@bitbake_variables_search_and_sub(                 "${D}${sbindir}/", r"${BITBAKE_VAR_SUB_DELIM}", d)}
+    install -d                                      ${D}${sbindir}
+    install -m 0755 ${S}/mender-bist-commit.sh      ${D}${sbindir}
+    ${@bitbake_variables_search_and_sub(           "${D}${sbindir}/", r"${BITBAKE_VAR_SUB_DELIM}", d)}
 }

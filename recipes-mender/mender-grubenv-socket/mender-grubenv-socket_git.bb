@@ -7,22 +7,23 @@ LIC_FILES_CHKSUM         = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf
 SYSTEMD_AUTO_ENABLE    = "enable"
 SYSTEMD_SERVICE:${PN} += "mender-grubenv.socket"
 
-RDEPENDS:${PN}        += "                     \
-                           grub-mender-grubenv \
-                           mender-update       \
-                         "
-SRC_URI                = "                                \
-                           file://mender-grubenv.socket   \
-                           file://mender-grubenv@.service \
-                         "
-FILES:${PN}           += "                                             \
-                           ${systemd_unitdir}/system/mender-grubenv*.* \
-                         "
+RDEPENDS:${PN} += " \
+  grub-mender-grubenv \
+  mender-update \
+"
+SRC_URI = " \
+  file://mender-grubenv.socket \
+  file://mender-grubenv@.service \
+"
+FILES:${PN} += " \
+  ${systemd_unitdir}/system/mender-grubenv*.* \
+"
+S = "${UNPACKDIR}"
 
 inherit systemd
 
 do_install:append() {
-    install -d                                         ${D}${systemd_unitdir}/system
-    install -m 0644 ${WORKDIR}/mender-grubenv.socket   ${D}${systemd_unitdir}/system
-    install -m 0644 ${WORKDIR}/mender-grubenv@.service ${D}${systemd_unitdir}/system
+    install -d                                   ${D}${systemd_unitdir}/system
+    install -m 0644 ${S}/mender-grubenv.socket   ${D}${systemd_unitdir}/system
+    install -m 0644 ${S}/mender-grubenv@.service ${D}${systemd_unitdir}/system
 }
